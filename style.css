@@ -1,0 +1,70 @@
+/* style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container-utama {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 500px;
+    border-top: 10px solid #ff6b6b;
+}
+
+.tajuk-borang {
+    color: #4834d4;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.group-input {
+    margin-bottom: 15px;
+}
+
+.label-teks {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2f3542;
+}
+
+.input-kawasan, .input-teks, .input-pilihan {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #dfe4ea;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.warna-warni-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-hantar { background-color: #2ed573; }
+.btn-semula { background-color: #ff4757; }
+
+.ralat-teks {
+    color: #eb4d4b;
+    background-color: #ff767522;
+    padding: 10px;
+    border-left: 5px solid #eb4d4b;
+    margin-bottom: 10px;
+}
+
+.pautan-kembali {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
