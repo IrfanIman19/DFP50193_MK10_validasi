@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -8,8 +9,18 @@
 <body>
     <div class="container-utama">
         <h2 class="tajuk-borang">Skim Pinjaman Komputer Riba</h2>
+
+        <?php 
+        if (isset($_SESSION['errors'])) {
+            foreach ($_SESSION['errors'] as $ralat) {
+                echo "<p class='ralat-teks'>⚠️ $ralat</p>";
+            }
+            // Buang ralat setelah dipaparkan supaya tidak muncul berulang kali
+            unset($_SESSION['errors']);
+        }
+        ?>
+
         <form action="proses.php" method="POST">
-            
             <div class="group-input">
                 <label class="label-teks">Nama Penuh:</label>
                 <input type="text" name="nama" class="input-teks">
@@ -37,14 +48,14 @@
 
             <div class="group-input">
                 <label class="label-teks">Spesifikasi Diperlukan:</label>
-                <input type="radio" name="specs" value="Basic" class="radio-item"> Basic
-                <input type="radio" name="specs" value="High-End" class="radio-item"> High-End
+                <input type="radio" name="specs" value="Basic"> Basic
+                <input type="radio" name="specs" value="High-End"> High-End
             </div>
 
             <div class="group-input">
                 <label class="label-teks">Peranti Tambahan:</label>
-                <input type="checkbox" name="extra[]" value="Mouse" class="check-item"> Tetikus
-                <input type="checkbox" name="extra[]" value="Bag" class="check-item"> Beg Laptop
+                <input type="checkbox" name="extra[]" value="Mouse"> Tetikus
+                <input type="checkbox" name="extra[]" value="Bag"> Beg Laptop
             </div>
 
             <div class="group-input">
@@ -56,7 +67,6 @@
                 <button type="submit" name="hantar" class="warna-warni-btn btn-hantar">Hantar Permohonan</button>
                 <button type="reset" class="warna-warni-btn btn-semula">Tetap Semula</button>
             </div>
-            
         </form>
     </div>
 </body>
