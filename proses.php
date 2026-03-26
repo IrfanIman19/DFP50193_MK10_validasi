@@ -2,6 +2,7 @@
 session_start();
 
 if (isset($_POST['hantar'])) {
+    // 1. Ambil data dari borang
     $nama = $_POST['nama'];
     $umur = $_POST['umur'];
     $tarikh = $_POST['tarikh'];
@@ -11,40 +12,35 @@ if (isset($_POST['hantar'])) {
     
     $errors = [];
 
-    // Pengesahan Input
+    // 2. Pengesahan (Validation)
     if (empty($nama)) $errors[] = "Nama tidak boleh kosong.";
     if (empty($umur)) $errors[] = "Umur tidak boleh kosong.";
     if (empty($tarikh)) $errors[] = "Tarikh tidak boleh kosong.";
     if (empty($jabatan)) $errors[] = "Sila pilih jabatan.";
     if (empty($specs)) $errors[] = "Sila pilih spesifikasi.";
-    if (strlen($alasan) < 25) $errors[] = "Alasan mesti sekurang-kurangnya 25 aksara.";
+    
+    // Syarat Alasan: Kurang dari 25 aksara adalah ralat
+    if (strlen($alasan) < 25) {
+        $errors[] = "Alasan mesti sekurang-kurangnya 25 aksara.";
+    }
 
-    // Jika ada ralat, simpan dalam session dan kembali ke borang.php
+    // 3. Semak jika ada ralat
     if (!empty($errors)) {
+        // Simpan ralat dalam session dan hantar balik ke borang.php
         $_SESSION['errors'] = $errors;
         header("Location: borang.php");
         exit();
+    } else {
+        // Jika TIADA ralat, simpan data yang berjaya dalam session untuk dipaparkan di view
+        $_SESSION['success_data'] = [
+            'nama' => $nama,
+            'jabatan' => $jabatan
+        ];
+        header("Location: view_success.php");
+        exit();
     }
 } else {
-    // Jika akses terus ke proses.php tanpa hantar borang
+    // Jika akses tanpa tekan butang hantar
     header("Location: borang.php");
     exit();
 }
-?>
-
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <title>Berjaya</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container-utama">
-        <h2 class="tajuk-borang" style="color: #2ed573;">Permohonan Berjaya!</h2>
-        <p>Terima kasih <strong><?php echo $nama; ?></strong>, permohonan anda telah diterima.</p>
-        
-        <a href="borang.php" class="pautan-kembali">← Hantar Permohonan Lain</a>
-    </div>
-</body>
-</html>
