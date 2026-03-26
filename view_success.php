@@ -1,35 +1,35 @@
-<?php session_start(); 
-// Jika tiada data session (akses haram), hantar balik ke borang
-if (!isset($_SESSION['success_data'])) {
+<?php 
+session_start(); 
+if (!isset($_SESSION['data_pelajar'])) {
     header("Location: borang.php");
     exit();
 }
-$data = $_SESSION['success_data'];
+$d = $_SESSION['data_pelajar'];
 ?>
 <!DOCTYPE html>
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <title>Permohonan Berjaya</title>
+    <title>Ringkasan Permohonan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container-utama">
-        <h2 class="tajuk-borang" style="color: #2ed573;">Tahniah!</h2>
+        <h2 class="tajuk-borang" style="color: #2ecc71;">Permohonan Berjaya</h2>
+        <p style="text-align: center;">Berikut adalah ringkasan maklumat yang telah anda hantar:</p>
         
-        <div class="maklumat-berjaya">
-            <p>Permohonan anda telah berjaya dihantar.</p>
-            <hr>
-            <p><strong>Nama Pemohon:</strong> <?php echo $data['nama']; ?></p>
-            <p><strong>Jabatan:</strong> <?php echo $data['jabatan']; ?></p>
-            <hr>
-        </div>
+        <table>
+            <tr><td>Nama Penuh</td><td><?php echo htmlspecialchars($d['nama']); ?></td></tr>
+            <tr><td>Umur</td><td><?php echo htmlspecialchars($d['umur']); ?> Tahun</td></tr>
+            <tr><td>Tarikh Mohon</td><td><?php echo htmlspecialchars($d['tarikh']); ?></td></tr>
+            <tr><td>Jabatan</td><td><?php echo htmlspecialchars($d['jabatan']); ?></td></tr>
+            <tr><td>Spesifikasi</td><td><?php echo htmlspecialchars($d['specs']); ?></td></tr>
+            <tr><td>Aksesori</td><td><?php echo htmlspecialchars($d['extra']); ?></td></tr>
+            <tr><td>Alasan</td><td><i><?php echo htmlspecialchars($d['alasan']); ?></i></td></tr>
+        </table>
 
-        <a href="borang.php" class="pautan-kembali">← Kembali ke Halaman Utama</a>
+        <a href="borang.php" class="pautan-kembali">← Kembali ke Borang</a>
     </div>
 </body>
 </html>
-<?php 
-// Padam data session selepas dipaparkan untuk keselamatan
-unset($_SESSION['success_data']); 
-?>
+<?php unset($_SESSION['data_pelajar']); ?>

@@ -3,19 +3,18 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <title>Permohonan Pinjaman Komputer Riba</title>
+    <title>Borang Pinjaman Laptop</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container-utama">
-        <h2 class="tajuk-borang">Skim Pinjaman Komputer Riba</h2>
+        <h2 class="tajuk-borang">Permohonan Pinjaman</h2>
 
         <?php 
         if (isset($_SESSION['errors'])) {
             foreach ($_SESSION['errors'] as $ralat) {
-                echo "<p class='ralat-teks'>⚠️ $ralat</p>";
+                echo "<div class='ralat-teks'>⚠️ $ralat</div>";
             }
-            // Buang ralat setelah dipaparkan supaya tidak muncul berulang kali
             unset($_SESSION['errors']);
         }
         ?>
@@ -39,7 +38,7 @@
             <div class="group-input">
                 <label class="label-teks">Jabatan:</label>
                 <select name="jabatan" class="input-pilihan">
-                    <option value="">-- Sila Pilih --</option>
+                    <option value="">-- Pilih Jabatan --</option>
                     <option value="JTMK">JTMK</option>
                     <option value="JKE">JKE</option>
                     <option value="JKM">JKM</option>
@@ -47,25 +46,25 @@
             </div>
 
             <div class="group-input">
-                <label class="label-teks">Spesifikasi Diperlukan:</label>
-                <input type="radio" name="specs" value="Basic"> Basic
-                <input type="radio" name="specs" value="High-End"> High-End
+                <label class="label-teks">Spesifikasi Laptop:</label>
+                <input type="radio" name="specs" value="Standard" class="class-radio"> Standard
+                <input type="radio" name="specs" value="High-Performance" class="class-radio"> High-Performance
             </div>
 
             <div class="group-input">
-                <label class="label-teks">Peranti Tambahan:</label>
-                <input type="checkbox" name="extra[]" value="Mouse"> Tetikus
-                <input type="checkbox" name="extra[]" value="Bag"> Beg Laptop
+                <label class="label-teks">Aksesori Tambahan:</label>
+                <input type="checkbox" name="extra[]" value="Mouse" class="class-check"> Tetikus
+                <input type="checkbox" name="extra[]" value="Laptop Bag" class="class-check"> Beg Laptop
             </div>
 
             <div class="group-input">
-                <label class="label-teks">Alasan Sokongan (Min 25 aksara):</label>
+                <label class="label-teks">Alasan (Min 25 aksara):</label>
                 <textarea name="alasan" class="input-kawasan" rows="4"></textarea>
             </div>
 
             <div class="group-input">
-                <button type="submit" name="hantar" class="warna-warni-btn btn-hantar">Hantar Permohonan</button>
-                <button type="reset" class="warna-warni-btn btn-semula">Tetap Semula</button>
+                <button type="submit" name="hantar" class="warna-warni-btn btn-hantar">Hantar</button>
+                <button type="reset" class="warna-warni-btn btn-semula">Reset</button>
             </div>
         </form>
     </div>
